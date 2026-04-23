@@ -36,16 +36,20 @@ export default function Inbox() {
           <p>📝 Drafts</p>
         </div>
 
-        <button style={{
-          marginTop: 20,
-          padding: 10,
-          width: "100%",
-          background: "#4CAF50",
-          color: "#fff",
-          border: "none"
-        }}>
-          + Compose
-        </button>
+        {/* ✅ Compose Button */}
+        <a href="/compose">
+          <button style={{
+            marginTop: 20,
+            padding: 10,
+            width: "100%",
+            background: "#4CAF50",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer"
+          }}>
+            + Compose
+          </button>
+        </a>
       </div>
 
       {/* Main Area */}
