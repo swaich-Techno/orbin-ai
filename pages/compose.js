@@ -7,13 +7,21 @@ export default function Compose() {
     message: ""
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    alert("Message sent (demo)");
+  await fetch("/api/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(form)
+  });
 
-    setForm({ to: "", subject: "", message: "" });
-  };
+  alert("Message saved!");
+
+  setForm({ to: "", subject: "", message: "" });
+};
 
   return (
     <div style={{ padding: 30, fontFamily: "Arial" }}>
