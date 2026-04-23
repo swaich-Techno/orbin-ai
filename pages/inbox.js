@@ -16,7 +16,13 @@ export default function Inbox() {
     }
   ]);
 
-  const [selectedEmail, setSelectedEmail] = useState(null);
+  import { useEffect } from "react";
+
+useEffect(() => {
+  fetch("/api/get")
+    .then(res => res.json())
+    .then(data => setEmails(data));
+}, []);
 
   return (
     <div style={{ display: "flex", height: "100vh", fontFamily: "Arial" }}>
