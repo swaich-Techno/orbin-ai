@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Inbox() {
+export default function Inbox() { 
   const [emails] = useState([
     {
       id: 1,
