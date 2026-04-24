@@ -24,7 +24,11 @@ export default function Inbox() {
 
         <div style={{ marginTop: 30 }}>
           <p>📥 Inbox</p>
-          <p>📤 Sent</p>
+
+          <a href="/sent" style={{ color: "#fff", textDecoration: "none" }}>
+            <p>📤 Sent</p>
+          </a>
+
           <p>📝 Drafts</p>
         </div>
 
