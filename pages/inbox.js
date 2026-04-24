@@ -1,28 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Inbox() { 
-  const [emails] = useState([
-    {
-      id: 1,
-      subject: "Client Approval Needed",
-      content: "Please review the proposal and approve.",
-      sender: "client@company.com"
-    },
-    {
-      id: 2,
-      subject: "Meeting Tomorrow",
-      content: "Reminder: meeting at 10 AM.",
-      sender: "team@work.com"
-    }
-  ]);
+export default function Inbox() {
+  const [emails, setEmails] = useState([]);
+  const [selectedEmail, setSelectedEmail] = useState(null);
 
-  import { useEffect } from "react";
-
-useEffect(() => {
-  fetch("/api/get")
-    .then(res => res.json())
-    .then(data => setEmails(data));
-}, []);
+  useEffect(() => {
+    fetch("/api/get")
+      .then(res => res.json())
+      .then(data => setEmails(data));
+  }, []);
 
   return (
     <div style={{ display: "flex", height: "100vh", fontFamily: "Arial" }}>
@@ -42,7 +28,6 @@ useEffect(() => {
           <p>📝 Drafts</p>
         </div>
 
-        {/* ✅ Compose Button */}
         <a href="/compose">
           <button style={{
             marginTop: 20,
@@ -67,7 +52,7 @@ useEffect(() => {
 
             {emails.map((mail) => (
               <div
-                key={mail.id}
+                key={mail._id}
                 onClick={() => setSelectedEmail(mail)}
                 style={{
                   border: "1px solid #ddd",
@@ -78,8 +63,8 @@ useEffect(() => {
                 }}
               >
                 <h4>{mail.subject}</h4>
-                <p>{mail.content}</p>
-                <small>From: {mail.sender}</small>
+                <p>{mail.message}</p>
+                <small>To: {mail.to}</small>
               </div>
             ))}
           </>
@@ -90,8 +75,8 @@ useEffect(() => {
             </button>
 
             <h2>{selectedEmail.subject}</h2>
-            <p><strong>From:</strong> {selectedEmail.sender}</p>
-            <p style={{ marginTop: 20 }}>{selectedEmail.content}</p>
+            <p><strong>To:</strong> {selectedEmail.to}</p>
+            <p style={{ marginTop: 20 }}>{selectedEmail.message}</p>
           </>
         )}
 
